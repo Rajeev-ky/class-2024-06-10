@@ -1,0 +1,32 @@
+---
+title: "Counties"
+author: "Rajeev Kumar Yadav"
+format: html
+execute: 
+  echo: false
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(scales)
+```
+
+```{r}
+#| label: load data
+#| warning: false
+
+x <- read_csv("data/nyc_tracts.csv", show_col_types = FALSE)
+x |> ggplot(aes(x = race, y = med_income)) +
+  geom_boxplot() +
+  labs(
+    title = "Median Income Distribution By Race",
+    subtitle = "White people has more median income than others",
+    x = "Race",
+    y = "Median Income") +
+    scale_y_continuous(labels = dollar)
+
+```
+
